@@ -19,6 +19,33 @@ export const Container = styled.header`
    justify-content: space-between;
 
    padding: 0 8rem;
+`;
 
-   background: red;
+export const Profile = styled.div`
+   display: flex;
+   align-items: center;
+
+   // esse sinal de > é pra garantir que irá alterar apenas a imagem que está dentro do Profile
+   > img {
+      width: 5.6rem;
+      height: 5.6rem;
+      border-radius: 50%;
+   }
+
+   > div {
+      display: flex;
+      flex-direction: column;
+      margin-left: 1.6rem;
+      line-height: 2.4rem;
+
+      span {
+         font-size: 1.4rem;
+         color: ${({ theme }) => theme.COLORS.GRAY_100};
+      }
+
+      strong {
+         font-size: 1.8rem;
+         color: ${({ theme }) => theme.COLORS.WHITE};
+      }
+   }
 `;
