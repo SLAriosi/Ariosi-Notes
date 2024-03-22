@@ -6,6 +6,13 @@ import { createGlobalStyle } from "styled-components";
 // Para exportar o estilo dessa variável padrão global, usamos essa estrutura abaixo
 export default createGlobalStyle`
 // Aqui Dentro Por Padrão você utiliza os comandos do css básicos que geralmente utilizamos.
+   
+// Adicionando o estilo para telas acessíveis, caso a pessoa precise aumentar a letra o site não ficar desestruturado.
+   :root{
+      // Padroniza os valores de rem para equivalerem 10 pixeis cada 1 rem
+      font-size: 62.5%;
+   }
+  
    * {
       margin: 0;
       padding: 0;
@@ -20,6 +27,16 @@ export default createGlobalStyle`
       
       // A cor dos textos ficarão com a Cor que 
       color: ${({ theme }) => theme.COLORS.WHITE};
+
+      //UTILIZANDO uma variável nova, chamada -webkit, ela serve pra você alterar uma fonte que você estiver usando.
+      -webkit-font-smoothing: antialiased;
+   }
+
+//Adicionando estilizações para o body, input, button, textarea
+   body, input, button, textarea {
+
+      //Fará todos os textos de todas as variáveis que adicionamos acima terem os textos na fonte Roboto Slab mas caso ela não consiga ser carregada, usamos o serif.
+      font-family: 'Roboto Slab', serif;
    }
 
 // Todo link ficará sem o underline
