@@ -18,3 +18,8 @@ export function Details() {
     // Aqui utilizo o Container dentro do Fragment para puxarmos o estilo Container que puxamos do style.js
   )
 }
+
+
+
+
+// O vite que utilizamos para startar o react, e criar todo o programa, se ele virá em formato JavaScript ou TypeScript, também serve para melhorar o tempo de inicio do servidor de desenvolvimento, dividindo os módulos nas categorias: dependências e código-fonte, parecido com o próprio npm.

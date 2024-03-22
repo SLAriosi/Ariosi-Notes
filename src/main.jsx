@@ -11,11 +11,17 @@ import { Details } from './pages/Details'
 // Importando esse tema e colocando na linha +- 13 Onde iremos passar o tema padrão do estilo CSS.
 import theme from './styles/theme'
 
+// Estamos importando de maneira default os valores CSS que serão globais de dentro da do arquivo global
+import GlobalStyles from './styles/global'
+
 // Corpo em estilo HTML usando React no getElementByID nós escrevemos a classe que será colocada esse conteúdo no index.html, nesse caso, e padronizado, vem root. você pode observar essa classe indo até o index.html provavelmente na linha 9 do index.html e lá que será inserido o conteúdo listado aqui abaixo. 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
+      <GlobalStyles />
       <Details />
     </ThemeProvider>
   </React.StrictMode>,
 )
+
+/* Colocamos o GlobalStyles aqui para que em todos os atributos que estiverem dentro do ThemeProvider fossem afetados por essa padronização */
