@@ -2,6 +2,9 @@
 import { Container } from "./styles.js";
 // Para Utilizar o estilo Container que foi Importado do CSS temos que colocar Container dentro dos Fragments aonde queremos modificar o estilo.
 
+// Importamos o component Button da pasta componentes para que nosso index consiga enxergar dentro daquela pasta e utilizar aquela estilização de botão.
+import { Button } from '../../components/Button' 
+
 //Quando se exporta usando a linha 1 de exemplo, você deve desestruturar a variável dentro do main.jsx no import na linha 3, e você desestrutura no formato de objeto, já que função vira um objeto, (Você passa os valores da função dentro de {} oque significa objeto.)
 export function Details() {
 
@@ -14,6 +17,8 @@ export function Details() {
     <Container>
       <h1>Hello World!</h1>
       <span>Lucas Ariosi</span>
+
+      <Button />
     </Container>
     // Aqui utilizo o Container dentro do Fragment para puxarmos o estilo Container que puxamos do style.js
   )

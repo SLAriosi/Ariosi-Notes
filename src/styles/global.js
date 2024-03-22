@@ -25,7 +25,7 @@ export default createGlobalStyle`
    body {
       background-color: ${({ theme }) => theme.COLORS.BACKGROUND_800};
       
-      // A cor dos textos ficarão com a Cor que 
+      // A cor dos textos ficarão com a Cor que o theme tem de WHITE dentro dele. no caso o WHITE é "#F4EDE8"
       color: ${({ theme }) => theme.COLORS.WHITE};
 
       //UTILIZANDO uma variável nova, chamada -webkit, ela serve pra você alterar uma fonte que você estiver usando.
