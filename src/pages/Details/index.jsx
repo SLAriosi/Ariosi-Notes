@@ -5,10 +5,10 @@ import { Container, Links } from "./styles.js";
 // Importamos o component Button da pasta componentes para que nosso index consiga enxergar dentro daquela pasta e utilizar aquela estilização de botão.
 import { Header } from '../../components/Header'
 
-//
 import { Button } from '../../components/Button'
 
-//
+import { ButtonText } from '../../components/ButtonText'
+
 import { Section } from '../../components/Section'
 
 import { Tag } from '../../components/Tag'
@@ -27,6 +27,8 @@ export function Details() {
     // Para utilizar o Children você passa ela dentro do Section, não uma propriedade comum como o title
     <Container>
       <Header />
+
+      <ButtonText title={"Excluir Nota"}/>
       
       <Section title="Links úteis">
         <Links>
@@ -39,6 +41,7 @@ export function Details() {
         <Tag title="express"/>
         <Tag title="nodejs"/>
       </Section>
+
 
       <Button title="Voltar" />
     </Container>

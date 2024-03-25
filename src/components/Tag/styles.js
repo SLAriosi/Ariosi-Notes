@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-// Porque colocar o styled.span, para que quando formos utilizar o Container e enviar os estilos que queremos, utilizarmos já uma tag parecida ou que já faça parte do conteúdo
+// Porque colocar o styled.span, para dizermos ao programa, que o tipo de atributo que estamos utilizando é um span.
 export const Container = styled.span`
    font-size: 1.2rem;
    padding: 0.5rem 1.4rem;
