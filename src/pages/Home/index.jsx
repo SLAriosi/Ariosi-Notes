@@ -1,10 +1,14 @@
 // Importando todos os Itens que iremos atualizar no styles.js.
 import { Container, Brand, Menu, Search, Content, NewNote } from './styles'
 
-import { FiPlus } from 'react-icons/fi';
+import { FiPlus, FiSearch } from 'react-icons/fi';
 
 // Importando o Header que já está criado dentro ca página Components
 import { Header } from '../../components/Header'
+
+
+import { Input } from '../../components/Input'
+
 import { ButtonText } from '../../components/ButtonText'
 // import { Header } from '../../components/Header'
 // import { Header } from '../../components/Header'
@@ -31,7 +35,7 @@ export function Home() {
 
          <Search>
 
-
+            <Input placeholder="Pesquisar pelo título" icon={FiSearch}/>
 
          </Search>
 
