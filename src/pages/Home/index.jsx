@@ -1,6 +1,8 @@
 // Importando todos os Itens que iremos atualizar no styles.js.
 import { Container, Brand, Menu, Search, Content, NewNote } from './styles'
 
+import { FiPlus } from 'react-icons/fi';
+
 // Importando o Header que já está criado dentro ca página Components
 import { Header } from '../../components/Header'
 import { ButtonText } from '../../components/ButtonText'
@@ -41,7 +43,8 @@ export function Home() {
 
          <NewNote>
 
-
+            <FiPlus />
+            Criar Nota
 
          </NewNote>
 
