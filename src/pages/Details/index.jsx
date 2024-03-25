@@ -11,6 +11,8 @@ import { Button } from '../../components/Button'
 //
 import { Section } from '../../components/Section'
 
+import { Tag } from '../../components/Tag'
+
 //Quando se exporta usando a linha 1 de exemplo, você deve desestruturar a variável dentro do main.jsx no import na linha 3, e você desestrutura no formato de objeto, já que função vira um objeto, (Você passa os valores da função dentro de {} oque significa objeto.)
 export function Details() {
 
@@ -25,18 +27,30 @@ export function Details() {
     // Para utilizar o Children você passa ela dentro do Section, não uma propriedade comum como o title
     <Container>
       <Header />
+      
       <Section title="Links úteis">
         <Links>
           <li><a href="#">https://github.com/SLAriosi/errosBurros/</a></li>
           <li><a href="#">https://github.com/SLAriosi/svgTools</a></li>
         </Links>
       </Section>
+
+      <Section title="Marcadores">
+        <Tag title="express"/>
+        <Tag title="nodejs"/>
+      </Section>
+
       <Button title="Voltar" />
     </Container>
     // Para adicionar propriedades não precisa fazer nada além de dar um espaço, e caso queira adicionar uma propriedade booleana, você só precisa passar a propriedade sem chaves ou aspas.
     // Aqui utilizo o Container dentro do Fragment para puxarmos o estilo Container que puxamos do style.js
     // O children vai capturar tudo que estiver dentro da Section / fragment que ele estiver, ou seja nesse caso ele vai capturar os ul li's, Itens 1, 2 e 3.
     // E após o Children capturar tudo isso, ele usando nosso style.js repassa esse conteúdo abaixo do H2 que é o título como passado ali no ./Section/styles.js
+      // <Links>
+        //<li><a href="#">https://github.com/SLAriosi/errosBurros/</a></li>
+        //<li><a href="#">https://github.com/SLAriosi/svgTools</a></li>
+      //</Links>
+        //Código Acima é a Children  
   )
 }
 
