@@ -14,7 +14,13 @@ export const Container = styled.div`
    // Aqui utilizamos esses parâmetros para definir a ordem que irá aparecer os itens da minha página, caso eu coloque o content antes do header (em cima do outro) quem irá aparecer primeiro é quem está no header.
    grid-template-areas:
    "header" 
-   "content"
+   "content";
+
+   > main {
+      grid-area: content;
+      overflow-y: scroll;
+      padding: 6.4rem 0;
+   }
 `;
 
 export const Links = styled.ul`
@@ -27,4 +33,30 @@ export const Links = styled.ul`
    a {
       color: ${({ theme }) => theme.COLORS.WHITE};
    }
-`
+`;
+
+export const Content = styled.div`
+   max-width: 50rem;
+   margin: 0 auto;
+
+   display: flex;
+   flex-direction: column;
+
+   // Aqui utiliza-se o ">" para demonstrar que é o button dentro dessa div, e essa button:first-child é para apenas aplicar no primeiro button que aparece dentro dessa div.
+   > button:first-child {
+      align-self: end;
+   }
+
+   > h1 {
+      font-size: 3.6rem;
+      font-weight: 500;
+      padding-top: 6.4rem;
+   }
+
+   > p {
+      font-size: 1.6rem;
+      margin-top: 1.6rem;
+      text-align: justify;
+   }
+
+`;

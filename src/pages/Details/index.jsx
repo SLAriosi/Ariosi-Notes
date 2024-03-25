@@ -1,5 +1,6 @@
 //Importando os estilos para serem usados aqui no index. Você não precisa fazer nada dentro do arquivo style.
-import { Container, Links } from "./styles.js";
+// Importando
+import { Container, Links, Content } from "./styles.js";
 // Para Utilizar o estilo Container que foi Importado do CSS temos que colocar Container dentro dos Fragments aonde queremos modificar o estilo.
 
 // Importamos o component Button da pasta componentes para que nosso index consiga enxergar dentro daquela pasta e utilizar aquela estilização de botão.
@@ -28,32 +29,47 @@ export function Details() {
     <Container>
       <Header />
 
-      <ButtonText title={"Excluir Nota"}/>
-      
-      <Section title="Links úteis">
-        <Links>
-          <li><a href="#">https://github.com/SLAriosi/errosBurros/</a></li>
-          <li><a href="#">https://github.com/SLAriosi/svgTools</a></li>
-        </Links>
-      </Section>
-
-      <Section title="Marcadores">
-        <Tag title="express"/>
-        <Tag title="nodejs"/>
-      </Section>
+      <main>
+        <Content>
 
 
-      <Button title="Voltar" />
+          <ButtonText title={"Excluir Nota"} />
+
+          <h1>
+            Introdução ao React
+          </h1>
+
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, totam, aspernatur maxime doloremque sit iure quidem voluptatem asperiores eum delectus, repellat nesciunt consequatur id. Numquam ex nisi amet quasi assumenda. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, blanditiis eligendi eos repudiandae corporis rerum? Earum, voluptates! Assumenda possimus sunt adipisci voluptatum cum blanditiis provident illo temporibus, molestias nihil aliquid. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem molestias ducimus placeat iste dolorum. Molestiae soluta quos consequatur unde autem a beatae recusandae est id rem, asperiores adipisci! Dicta, quaerat.
+          </p>
+
+          <Section title="Links úteis">
+            <Links>
+              <li><a href="#">https://github.com/SLAriosi/errosBurros/</a></li>
+              <li><a href="#">https://github.com/SLAriosi/svgTools</a></li>
+            </Links>
+          </Section>
+
+          <Section title="Marcadores">
+            <Tag title="express" />
+            <Tag title="nodejs" />
+          </Section>
+
+
+          <Button title="Voltar" />
+
+        </Content>
+      </main>
     </Container>
     // Para adicionar propriedades não precisa fazer nada além de dar um espaço, e caso queira adicionar uma propriedade booleana, você só precisa passar a propriedade sem chaves ou aspas.
     // Aqui utilizo o Container dentro do Fragment para puxarmos o estilo Container que puxamos do style.js
     // O children vai capturar tudo que estiver dentro da Section / fragment que ele estiver, ou seja nesse caso ele vai capturar os ul li's, Itens 1, 2 e 3.
     // E após o Children capturar tudo isso, ele usando nosso style.js repassa esse conteúdo abaixo do H2 que é o título como passado ali no ./Section/styles.js
-      // <Links>
-        //<li><a href="#">https://github.com/SLAriosi/errosBurros/</a></li>
-        //<li><a href="#">https://github.com/SLAriosi/svgTools</a></li>
-      //</Links>
-        //Código Acima é a Children  
+    // <Links>
+    //<li><a href="#">https://github.com/SLAriosi/errosBurros/</a></li>
+    //<li><a href="#">https://github.com/SLAriosi/svgTools</a></li>
+    //</Links>
+    //Código Acima é a Children  
   )
 }
 
