@@ -24,4 +24,51 @@ export const Container = styled.div`
 export const Form = styled.form`
    max-width: 34rem;
    margin: 3rem auto 0;
+
+// Dando Espaçamento no meio das 4 divs do Perfil. Usando essa div:nth-child(esse número você decide qual a child que você quer que tenha o espaçamento). Vira meio que uma função.
+   > div:nth-child(4){
+      margin-top: 2.4rem;
+   }
+`;
+
+export const Avatar = styled.div`
+   position: relative;
+   margin: -12.4rem auto 3.2rem;
+
+   width: 18.6rem;
+   height: 18.6rem;
+
+   > img {
+      border-radius: 50%;
+      width: 18.6rem;
+      height: 18.6rem;
+   }
+
+   > label {
+      width: 4.8rem;
+      height: 4.8rem;
+
+      background-color: ${({ theme }) => theme.COLORS.ORANGE};
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: absolute;
+      bottom: 0.7rem;
+      right: 0.7rem;
+
+      cursor: pointer;
+
+      input {
+         display: none;
+      }
+
+      svg {
+         width: 2rem;
+         height: 2rem;
+      }
+   }
+
 `;
