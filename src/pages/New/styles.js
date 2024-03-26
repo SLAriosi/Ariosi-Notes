@@ -4,12 +4,17 @@ export const Container = styled.div`
    width: 100%;
    height: 100vh;
 
+   &:focus {
+      outline: none;
+   }
+
    display: grid;
    grid-template-rows: 10.5rem auto ;
    grid-template-areas:
    "header" 
    "content" 
 `;
+
 
 export const Form = styled.form`
    max-width: 55rem;
