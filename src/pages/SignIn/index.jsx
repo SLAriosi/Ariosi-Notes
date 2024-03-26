@@ -1,6 +1,6 @@
 // Importar o Container de dentro do styles aqui da página SignIn.
 // Form também vai vir dessa mesma pasta styles, por isso importamos assim com vírgula.
-import { Container, Form } from './styles'
+import { Container, Form, Background } from './styles'
 
 // Agora importamos o icon que iremos utilizar dentro do Input, importamos de dentro da biblioteca do react-icons, e temos que selecionar a biblioteca que iremos utilizar de icones também que nesse caso é a "fi", para descobrir a biblioteca do ícone que você deseja utilizar, entre no site do react icons.
 import { FiMail, FiLogIn, FiLock } from 'react-icons/fi'
@@ -41,6 +41,8 @@ export function SignIn() {
             </a>
 
          </Form>
+
+         <Background/>
       </Container>
    )
 }
