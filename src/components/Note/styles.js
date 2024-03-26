@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// Criar um container, e dizer que o container é um botão. Container por preferências, como se fosse um padrãozinho, se fiz 1 container, todos os componentes serão
 export const Container = styled.button`
    width: 100%;
    background-color: ${({ theme }) => theme.COLORS.BACKGROUND_700};

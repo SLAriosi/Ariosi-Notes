@@ -6,11 +6,14 @@ import { FiPlus, FiSearch } from 'react-icons/fi';
 // Importando o Header que já está criado dentro ca página Components
 import { Header } from '../../components/Header'
 
-
+// Importando as notas, elas existem dentro de uma "Section" e lá é onde passamos os parâmetros corretos para cada nota e oque queremos colocar nelas.
+// Passamos o id e o nome que queremos das às tags, como parâmetros e objetos dentro delas (dentro da SECTION).
 import { Note } from '../../components/Note'
+
 
 import { Input } from '../../components/Input'
 
+//Importamos a Seção pois as "Note" estão dentro de uma seção 
 import { Section } from '../../components/Section'
 
 import { ButtonText } from '../../components/ButtonText'

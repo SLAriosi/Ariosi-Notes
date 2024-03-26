@@ -16,12 +16,14 @@ import GlobalStyles from './styles/global'
 
 import { Home } from './pages/Home'
 
+import { SignIn } from './pages/SignIn'
+
 // Corpo em estilo HTML usando React no getElementByID nós escrevemos a classe que será colocada esse conteúdo no index.html, nesse caso, e padronizado, vem root. você pode observar essa classe indo até o index.html provavelmente na linha 9 do index.html e lá que será inserido o conteúdo listado aqui abaixo. 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <Home/>
+      <SignIn/>
     </ThemeProvider>
   </React.StrictMode>,
 )
