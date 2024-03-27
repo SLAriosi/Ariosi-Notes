@@ -12,7 +12,20 @@ export const Container = styled.div`
    grid-template-rows: 10.5rem auto ;
    grid-template-areas:
    "header" 
-   "content" 
+   "content"; 
+
+   main {
+      grid-area: content;
+      overflow-y: auto;
+   }
+
+   .tags {
+      display: flex;
+      justify-content: space-between ;
+
+      // Jogando pra baixo quando não couber mais nada dentro.
+      flex-wrap: wrap;
+   }
 `;
 
 
