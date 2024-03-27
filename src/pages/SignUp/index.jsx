@@ -5,6 +5,9 @@ import { Container, Form, Background } from './styles'
 // Agora importamos o icon que iremos utilizar dentro do Input, importamos de dentro da biblioteca do react-icons, e temos que selecionar a biblioteca que iremos utilizar de icones também que nesse caso é a "fi", para descobrir a biblioteca do ícone que você deseja utilizar, entre no site do react icons.
 import { FiMail, FiLock, FiUser } from 'react-icons/fi'
 
+// Importando o link do react-router-dom que é um Link padronizado para facilitar a navegação de telas. usando Link to= /rota
+import { Link } from 'react-router-dom'
+
 // Importando o Input pois iremos utilizar isso dentro do formulário (CLARAMENTE!! dskldsldksld).
 import { Input } from '../../components/Input'
 
@@ -44,9 +47,9 @@ export function SignUp() {
 
             <Button title={"Cadastrar"} />
 
-            <a href="#">
+            <Link to="/">
                Voltar para o login
-            </a>
+            </Link>
 
          </Form>
 

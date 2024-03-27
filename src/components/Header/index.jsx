@@ -10,7 +10,7 @@ export function Header() {
    return (
       <Container>
 
-         <Profile>
+         <Profile to= "/profile">
             <img
                src="https://github.com/SLAriosi.png"
                alt="Imagem de Perfil do SLAriosi"

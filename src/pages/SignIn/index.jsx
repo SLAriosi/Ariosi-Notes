@@ -2,6 +2,9 @@
 // Form também vai vir dessa mesma pasta styles, por isso importamos assim com vírgula.
 import { Container, Form, Background } from './styles'
 
+// Estamos importando esse Link que é um link padrão como os já utilizados, mas ele tem um padrão legal para aplicar navegação de ir para as rotas e tals
+import { Link } from 'react-router-dom'
+
 // Agora importamos o icon que iremos utilizar dentro do Input, importamos de dentro da biblioteca do react-icons, e temos que selecionar a biblioteca que iremos utilizar de icones também que nesse caso é a "fi", para descobrir a biblioteca do ícone que você deseja utilizar, entre no site do react icons.
 import { FiMail, FiLock } from 'react-icons/fi'
 
@@ -36,9 +39,10 @@ export function SignIn() {
 
             <Button title={"Entrar"}/>
 
-            <a href="#">
+            {/* Agora nós utilizamos o Link, antes era o âncora (a) agora vamos colocar Link que facilida na navegação usando o padrão de Link to = /suaRotaAqui  */}
+            <Link to="/register">
                Criar conta
-            </a>
+            </Link>
 
          </Form>
 

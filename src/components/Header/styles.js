@@ -1,5 +1,7 @@
 import styled from "styled-components";
 
+import { Link } from 'react-router-dom'
+
 // Assim vamos exportar o Container como um styled.header, assim podemos pegar as estilizações padrão e passar coisas específicas para o header.
 export const Container = styled.header`
 
@@ -21,7 +23,7 @@ export const Container = styled.header`
    padding: 0 8rem;
 `;
 
-export const Profile = styled.div`
+export const Profile = styled(Link)`
    display: flex;
    align-items: center;
 

@@ -60,8 +60,10 @@ export function Home() {
             </Section>
 
          </Content>
-
-         <NewNote>
+               
+               {/* Conseguimos usar o to para linkarmos esse botão com a rota New porque dentro do styles.js aqui da página Home, nós setamos ele como um styled(Link) explicações sobre o link abaixo. */}
+               {/* O link é importado do react-router-dom e utilizado como um padronizador, que facilita a navegação (ele deixa mais fácil na hora de mudar a rota do navegador "a URL com o /nomequevocequiser") */}
+         <NewNote to="/New">
 
             <FiPlus />
             Criar Nota
