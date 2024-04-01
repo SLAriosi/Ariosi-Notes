@@ -1,3 +1,8 @@
+// Criando uma estrutura pra estado das coisas.
+import { useState } from "react";
+
+import { api } from "../../services/api"
+
 // Importar o Container de dentro do styles aqui da página SignIn.
 // Form também vai vir dessa mesma pasta styles, por isso importamos assim com vírgula.
 import { Container, Form, Background } from './styles'
@@ -16,6 +21,32 @@ import { Button } from '../../components/Button'
 
 // Dentro do estilo principal aqui do index.jsx, colocamos o form, vamos criar o form aí dentro desse componente.
 export function SignUp() {
+
+   // Dentro dos parênteses no State nós podemos criar um estado padrão para quando iniciar. nesse caso está useState("")
+   const [name, setName] = useState("")
+   const [email, setEmail] = useState("")
+   const [password, setPassword] = useState("")
+
+   // Criamos essa função para lidar com o cadastro de usuário, com essa função veremos se está recebendo esses estados.
+   function handleSignUp() {
+      // Primeiro queremos ter certeza que o usuário preencheu nome email e senha pra aí sim continuar com o cadastro
+      if (!name || !email || !password) {
+        return alert("Preencha todos os campos")
+      }
+
+      api.post("/users", {name, email, password})
+      .then(() => {
+         alert("Usuário cadastrado com Sucesso!!")
+      })
+      .catch(error => {
+         if (error.response){
+            alert(error.response.data.message);
+         }else {
+            alert("Não foi possível Realizar o cadastro")
+         }
+      })
+   }
+
    return (
       <Container>
          <Background />
@@ -31,21 +62,24 @@ export function SignUp() {
                placeholder="Nome"
                type="text"
                icon={FiUser}
-            />
+               onChange={e => setName(e.target.value)} //Toda vez que muda o estado desse input essa função onChange dispara, esse e. é a abreviação de event.
+               />
 
             <Input
                placeholder="E-mail"
                type="text"
                icon={FiMail}
-            />
+               onChange={e => setEmail(e.target.value)} //Toda vez que muda o estado desse input essa função onChange dispara, esse e. é a abreviação de event.
+               />
 
             <Input
                placeholder="Senha"
                type="password"
                icon={FiLock}
+               onChange={e => setPassword(e.target.value)} //Toda vez que muda o estado desse input essa função onChange dispara, esse e. é a abreviação de event.
             />
 
-            <Button title={"Cadastrar"} />
+            <Button title="Cadastrar" onClick={handleSignUp} />
 
             <Link to="/">
                Voltar para o login
