@@ -2,11 +2,15 @@
 // Form também vai vir dessa mesma pasta styles, por isso importamos assim com vírgula.
 import { Container, Form, Background } from './styles'
 
+import { useContext } from 'react'
+
 // Estamos importando esse Link que é um link padrão como os já utilizados, mas ele tem um padrão legal para aplicar navegação de ir para as rotas e tals
 import { Link } from 'react-router-dom'
 
 // Agora importamos o icon que iremos utilizar dentro do Input, importamos de dentro da biblioteca do react-icons, e temos que selecionar a biblioteca que iremos utilizar de icones também que nesse caso é a "fi", para descobrir a biblioteca do ícone que você deseja utilizar, entre no site do react icons.
 import { FiMail, FiLock } from 'react-icons/fi'
+
+import { MyContext } from "../../myContext"
 
 // Importando o Input pois iremos utilizar isso dentro do formulário (CLARAMENTE!! dskldsldksld).
 import { Input } from '../../components/Input'
@@ -16,6 +20,9 @@ import { Button } from '../../components/Button'
 
 // Dentro do estilo principal aqui do index.jsx, colocamos o form, vamos criar o form aí dentro desse componente.
 export function SignIn() {
+
+   const data = useContext(MyContext);
+   console.log("MEU CONTEXTO =>", data)
    return (
       <Container>
          <Form>
