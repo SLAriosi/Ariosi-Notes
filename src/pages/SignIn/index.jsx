@@ -1,3 +1,6 @@
+// Para criar estados para armazenar essas informações, o email e a senha.
+import { useState } from 'react'
+
 // Importar o Container de dentro do styles aqui da página SignIn.
 // Form também vai vir dessa mesma pasta styles, por isso importamos assim com vírgula.
 import { Container, Form, Background } from './styles'
@@ -19,8 +22,15 @@ import { Button } from '../../components/Button'
 // Dentro do estilo principal aqui do index.jsx, colocamos o form, vamos criar o form aí dentro desse componente.
 export function SignIn() {
 
-   const data = useAuth();
-   console.log("MEU CONTEXTO =>", data)
+   const [email, setEmail] = useState("")
+   const [password, setPassword] = useState("")
+
+   const { signIn } = useAuth();
+
+   function handleSignIn(){
+      signIn({ email, password});
+   }
+
    return (
       <Container>
          <Form>
@@ -34,15 +44,17 @@ export function SignIn() {
                placeholder="E-mail"
                type="text"
                icon={FiMail}
-            />
+               onChange={e => setEmail(e.target.value)}
+               />
 
             <Input
                placeholder="Senha"
                type="password"
                icon={FiLock}
+               onChange={e => setPassword(e.target.value)}
             />
 
-            <Button title={"Entrar"}/>
+            <Button title={"Entrar"} onClick={handleSignIn}/>
 
             {/* Agora nós utilizamos o Link, antes era o âncora (a) agora vamos colocar Link que facilida na navegação usando o padrão de Link to = /suaRotaAqui  */}
             <Link to="/register">
