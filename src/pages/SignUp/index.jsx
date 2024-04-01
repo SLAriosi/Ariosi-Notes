@@ -11,7 +11,7 @@ import { Container, Form, Background } from './styles'
 import { FiMail, FiLock, FiUser } from 'react-icons/fi'
 
 // Importando o link do react-router-dom que é um Link padronizado para facilitar a navegação de telas. usando Link to= /rota
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 // Importando o Input pois iremos utilizar isso dentro do formulário (CLARAMENTE!! dskldsldksld).
 import { Input } from '../../components/Input'
@@ -27,6 +27,8 @@ export function SignUp() {
    const [email, setEmail] = useState("")
    const [password, setPassword] = useState("")
 
+   const navigate = useNavigate();
+
    // Criamos essa função para lidar com o cadastro de usuário, com essa função veremos se está recebendo esses estados.
    function handleSignUp() {
       // Primeiro queremos ter certeza que o usuário preencheu nome email e senha pra aí sim continuar com o cadastro
@@ -37,6 +39,7 @@ export function SignUp() {
       api.post("/users", {name, email, password})
       .then(() => {
          alert("Usuário cadastrado com Sucesso!!")
+         navigate("/")
       })
       .catch(error => {
          if (error.response){
