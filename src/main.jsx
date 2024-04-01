@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/client'
 // Importando o styled-components da extesão styled-components (unha sendo pintada) 
 import { ThemeProvider } from 'styled-components'
 
-import { MyContext } from './myContext'
+import { AuthProvider } from './hooks/auth'
 
 // Se desestrutura o Details { Details } dessa maneira pois lá em Details.jsx ele não é um export default, portanto devesse DESESTRUTURAR a função Details(){}, E como uma função recebe seus valores em formato de OBJETO ("{}") é necessário desestruturar com {} aqui no inicio do programa
 import { Details } from './pages/Details'
@@ -23,9 +23,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      <MyContext.Provider value={{ name: "AriosiLucas", email: "ariosilucas@gmail.com"}}>
+      <AuthProvider>
         <Routes />
-      </MyContext.Provider>
+      </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>,
 )
