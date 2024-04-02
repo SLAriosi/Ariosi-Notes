@@ -46,6 +46,25 @@ function AuthProvider({ children }) {
       setData({})
    }
 
+   async function updateProfile({ user }){
+      try {
+
+         await api.put("/users", user)
+         localStorage.setItem("@ariosinotes:user", JSON.stringify(user))
+
+         // Para atualizar o setData nós passamos aqui com o setData(user, e o token que receberá o token que já existe no LocalHost)
+         setData({ user, token: data.token })
+         alert("Perfil atualizado!")
+         
+      } catch (error) {
+         if (error.response) {
+            alert(error.response.data.message)
+         } else {
+            alert("Não foi possível atualizar o perfil.")
+         }
+      }
+   }
+
    // Como funciona o Use Effect, Ele tem 2 partes a primeira parte é a função que eu quero que ele execute, ele sempre vai executar após o carregamento do componente, e na segunda parte é um vetor que você pode colocar um estado, e caso esse estado mude, o useEffect executa novamente
    useEffect(() => {
       
@@ -69,7 +88,7 @@ function AuthProvider({ children }) {
    }, [])
 
    return (
-      <AuthContext.Provider value={{ signIn, user: data.user, signOut }}>
+      <AuthContext.Provider value={{ signIn, user: data.user, signOut, updateProfile }}>
          {children}
       </AuthContext.Provider>
    )
