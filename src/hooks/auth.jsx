@@ -22,7 +22,7 @@ function AuthProvider({ children }) {
          // Também setamos para guardar o token na máquina do Usuário, usando a mesma estrutura, e como o token já é uma string, não precisamos usar o JSON.stringify
          localStorage.setItem("@ariosinotes:token", token)
 
-         api.defaults.headers.authorization = `Bearer ${token}`
+         api.defaults.headers.common['Authorization'] = `Bearer ${token}`
          setData({user, token})
          
       } catch (error) {
@@ -57,7 +57,7 @@ function AuthProvider({ children }) {
       if (token && user) {
 
          // Essa linha insere o Token dentro do Cabeçalho (headers)
-         api.defaults.headers.authorization = `Bearer ${token}`
+         api.defaults.headers.common['Authorization'] = `Bearer ${token}`
 
          // Por final setamos os dados que queremos, e como o usuário é um objeto, temos que usar o JSON.parse que transforma de volta o usuário que antes transformamos em um formato String para o tipo JSON.
          setData({
