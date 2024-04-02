@@ -34,6 +34,18 @@ function AuthProvider({ children }) {
       }
    }
 
+   // Função para deslogar da aplicação!!
+   // Unica coisa que precisa ser feito é remover do localStorage o token e o Usuário;
+   function signOut(params) {
+
+      // Para remover as informações do localStorage, usamos o .removeItem()
+      localStorage.removeItem("@ariosinotes:user")
+      localStorage.removeItem("@ariosinotes:token")
+
+      // E depois de removermos esses itens nós apenas setamos os dados como Vazios novamente fazendo:
+      setData({})
+   }
+
    // Como funciona o Use Effect, Ele tem 2 partes a primeira parte é a função que eu quero que ele execute, ele sempre vai executar após o carregamento do componente, e na segunda parte é um vetor que você pode colocar um estado, e caso esse estado mude, o useEffect executa novamente
    useEffect(() => {
       
@@ -57,7 +69,7 @@ function AuthProvider({ children }) {
    }, [])
 
    return (
-      <AuthContext.Provider value={{ signIn, user: data.user }}>
+      <AuthContext.Provider value={{ signIn, user: data.user, signOut }}>
          {children}
       </AuthContext.Provider>
    )
