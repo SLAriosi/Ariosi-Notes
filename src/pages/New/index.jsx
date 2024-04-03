@@ -72,6 +72,20 @@ export function New() {
 
    async function handleNewNote() {
 
+      if (!title) {
+         return alert("Você NÃO adicionou um título para a sua nova Nota, adicione um Título para prosseguir");
+      }
+
+      // Aqui criamos uma validação para caso haja algo dentro do newTag que é o placeholder, mostrar um alerta para a pessoa
+      if (newTag) {
+         return alert("Você deixou uma tag no campo para adicionar, mas não clicou no '+' para adicionar. Clique para adicionar, ou deixe o campo em branco");
+      }
+
+      // Mesma coisa da validação de cima mas para o NewLink.
+      if (newLink) {
+         return alert("Você deixou um Link no campo para adicionar, mas não clicou no '+' para adicionar. Clique para adicionar, ou deixe o campo em branco");
+      }
+
       // Aqui iremos enviar em método Post para /notes, e dentro mandamos o objeto que queremos enviar, no caso o title a description as tags e os links.
       await api.post("/notes", {
          title,
