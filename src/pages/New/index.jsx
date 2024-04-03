@@ -18,6 +18,12 @@ export function New() {
    // Criamos esse novo estado para adicionar o link que será adicionado no momento.
    const [newLink, setNewLink] = useState("");
 
+   // 
+   const [tags, setTags] = useState([]);
+
+   // 
+   const [newTag, setNewTag] = useState("");
+
    // Criamos a função para acessarmos a função para atualizarmos o estado do componente
    // Depois de criada a função nós adicionamos ela lá aonde clicamos para adicionarmos um novo link.
    function handleAddLink() {
@@ -36,13 +42,24 @@ export function New() {
    // Adicionamos essa função para deletarmos algum link Útil que o usuário criou e agora quer deletá-lo
    // O parâmetro deleted recebe o link que queremos deletar da lista de links úteis.
    // E por final adicionamos essa função no onClick do NoteItem.
-   function handleRemoveLink(deleted) {
+   function handleRemoveLink(linkDeleted) {
 
       // Aqui pegamos o setlinks para acessarmos o prevState e dentro dele nós temos todo o conteúdo desse estado antes dele ser atualizado.
       // Adicionamos o prevState e utilizamos o filter que irá retornar uma lista baseada no que eu colocar nele.
-      // Como nós queremos que ele retorne todos os links, menos o que a gente deletar, então colocamos no filter para puxar o link onde o link é diferente do deleted (link => link !== deleted)
-      // Adicionando essa validação, só será inserido dentro do setLinks os links que não são iguais ao deleted, consequentemente deletando o link que queremos deletar.
-      setLinks(prevState => prevState.filter(link => link !== deleted))
+      // Como nós queremos que ele retorne todos os links, menos o que a gente deletar, então colocamos no filter para puxar o link onde o link é diferente do linkDeleted (link => link !== linkDeleted)
+      // Adicionando essa validação, só será inserido dentro do setLinks os links que não são iguais ao linkDeleted, consequentemente deletando o link que queremos deletar.
+      setLinks(prevState => prevState.filter(link => link !== linkDeleted))
+   }
+
+   // Essa função de adicionar e remover Tags aqui embaixo é muuuito parecida com a de adicionar e remover Links, seguem a mesma lógica então não vou documentar essa parte.
+
+   function handleAddTag() {
+      setTags(prevState => [...prevState, newTag]);
+      setNewTag("")
+   }
+
+   function handleRemoveTag(tagDeleted) {
+      setTags(prevState => prevState.filter(tag => tag !== tagDeleted));
    }
 
    return (
@@ -81,8 +98,23 @@ export function New() {
 
                   {/* Usamos esse className na div porque ela é uma propriedade React, então o react vai entender quando puxarmos .tags lá no styles.js */}
                   <div className="tags">
-                     <NoteItem value="react" />
-                     <NoteItem isNew placeholder="Nota tag" />
+                     {
+                        tags.map((tag, index) => (
+                           <NoteItem
+                           key={String(index)}
+                              value={tag}
+                              onClick={() => handleRemoveTag(tag)}
+                           />
+                        ))
+                     }
+
+                     <NoteItem
+                        isNew
+                        placeholder="Nota tag"
+                        onChange={e => setNewTag(e.target.value)}
+                        value={newTag}
+                        onClick={handleAddTag}
+                     />
                   </div>
                </Section>
 
