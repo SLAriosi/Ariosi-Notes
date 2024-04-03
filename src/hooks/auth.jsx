@@ -23,8 +23,8 @@ function AuthProvider({ children }) {
          localStorage.setItem("@ariosinotes:token", token)
 
          api.defaults.headers.common['Authorization'] = `Bearer ${token}`
-         setData({user, token})
-         
+         setData({ user, token })
+
       } catch (error) {
          if (error.response) {
             alert(error.response.data.message)
@@ -46,8 +46,16 @@ function AuthProvider({ children }) {
       setData({})
    }
 
-   async function updateProfile({ user }){
+   async function updateProfile({ user, avatarFile }) {
       try {
+
+         if (avatarFile) {
+            const fileUploadForm = new FormData();
+            fileUploadForm.append("avatar", avatarFile);
+
+            const response = await api.patch("/users/avatar", fileUploadForm);
+            user.avatar = response.data.avatar;
+         }
 
          await api.put("/users", user)
          localStorage.setItem("@ariosinotes:user", JSON.stringify(user))
@@ -55,7 +63,7 @@ function AuthProvider({ children }) {
          // Para atualizar o setData nós passamos aqui com o setData(user, e o token que receberá o token que já existe no LocalHost)
          setData({ user, token: data.token })
          alert("Perfil atualizado!")
-         
+
       } catch (error) {
          if (error.response) {
             alert(error.response.data.message)
@@ -67,7 +75,7 @@ function AuthProvider({ children }) {
 
    // Como funciona o Use Effect, Ele tem 2 partes a primeira parte é a função que eu quero que ele execute, ele sempre vai executar após o carregamento do componente, e na segunda parte é um vetor que você pode colocar um estado, e caso esse estado mude, o useEffect executa novamente
    useEffect(() => {
-      
+
       // Agora vamos pegar o valor que queremos para quando abrir a página ela abrir. Para obter essas informações usamos o .getItem, e passamos exatamente a mesma tag que usamos para guardar a informação
       const token = localStorage.getItem("@ariosinotes:token")
       const user = localStorage.getItem("@ariosinotes:user")
@@ -88,7 +96,13 @@ function AuthProvider({ children }) {
    }, [])
 
    return (
-      <AuthContext.Provider value={{ signIn, user: data.user, signOut, updateProfile }}>
+      <AuthContext.Provider value={{
+         signIn,
+         signOut,
+         updateProfile,
+         user: data.user,
+      }}
+      >
          {children}
       </AuthContext.Provider>
    )
