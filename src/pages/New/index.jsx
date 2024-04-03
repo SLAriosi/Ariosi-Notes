@@ -32,6 +32,19 @@ export function New() {
       setNewLink("")
    }
 
+   // Lembrando, funções que começam com handle é uma função que acontece depois de o úsuário realizar alguma ação, nesse caso o usuário clicará no botão de deletar o link, e ele será deletado.
+   // Adicionamos essa função para deletarmos algum link Útil que o usuário criou e agora quer deletá-lo
+   // O parâmetro deleted recebe o link que queremos deletar da lista de links úteis.
+   // E por final adicionamos essa função no onClick do NoteItem.
+   function handleRemoveLink(deleted) {
+
+      // Aqui pegamos o setlinks para acessarmos o prevState e dentro dele nós temos todo o conteúdo desse estado antes dele ser atualizado.
+      // Adicionamos o prevState e utilizamos o filter que irá retornar uma lista baseada no que eu colocar nele.
+      // Como nós queremos que ele retorne todos os links, menos o que a gente deletar, então colocamos no filter para puxar o link onde o link é diferente do deleted (link => link !== deleted)
+      // Adicionando essa validação, só será inserido dentro do setLinks os links que não são iguais ao deleted, consequentemente deletando o link que queremos deletar.
+      setLinks(prevState => prevState.filter(link => link !== deleted))
+   }
+
    return (
       <Container>
          <Header />
@@ -52,7 +65,7 @@ export function New() {
                      <NoteItem
                         key={String(index)}
                         value={link}
-                        onClick={() => { }}
+                        onClick={() => handleRemoveLink(link)}
                      />
                   ))}
                   <NoteItem
