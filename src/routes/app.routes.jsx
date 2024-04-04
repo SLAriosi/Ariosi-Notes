@@ -20,11 +20,11 @@ export function AppRoutes(){
          {/* E logo a frente nós colocamos o elemento que queremos que entre ao colocarmos a rota nesse caso a home  */}
          <Route path="/" element={<Home />}/>
          <Route path="/new" element={<New />}/>
-         <Route path="/profile" element={<Profile/>}/>
+         <Route exact path="/profile" element={<Profile/>}/>
 
          {/* Nesse caso o details tem uma particularidade, porque ele precisa dos ids dos usuários para saber quais notas e quais detalhes puxar, por isso temos que puxar um parâmetro para que as informações linkem e apareça dependendo do usuário. */}
          {/* Por esse motivo passamos a rota /details com o parâmetro /:id na frente */}
-         <Route path="/details/:id" element={<Details/>}/>
+         <Route exact path="/details/:id" element={<Details/>}/>
       </Routes>
    )
 }
