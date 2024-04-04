@@ -27,8 +27,20 @@ export function Home() {
    // Vamos criar esse estado para guardarmos a tag selecionada.
    const [tagsSelected, setTagsSelected] = useState([]);
 
+
+   // Criaremos esse estado para guardarmos o conteúdo do input de pesquisa da home.
+   const [search, setSearch] = useState("")
+
+   // Criamos esse estado para guardar as notas
+   const [notes, setNotes] = useState([])
+
+
    // Função para lidar com a mudança de estado da tag;
    function handleTagSelected(tagName) {
+
+      if(tagName === "all"){
+         return setTagsSelected([])
+      }
 
       const alreadySelected = tagsSelected.includes(tagName);
       console.log(alreadySelected)
@@ -36,7 +48,7 @@ export function Home() {
       if (alreadySelected) {
          const filteredTags = tagsSelected.filter(tag => tag !== tagName);
          setTagsSelected(filteredTags);
-         
+
       } else {
          setTagsSelected(prevState => [...prevState, tagName])
       }
@@ -50,6 +62,19 @@ export function Home() {
 
       fetchTags();
    }, []);
+
+   // A dependencia do useEffect serão as tagsSelected, e o Search, ou seja quando mudar o conteúdo do search ou o tagsSelected, ele vai executar o useEffect.
+   // Quando criamos um useEffect sem dependência como no useEffect acima, Ele apenas executa na hora que renderiza a primeira vez do arquivo, ou seja, quando abrimos a página.
+   useEffect(() => {
+
+      async function fatchNotes() {
+         const response = await api.get(`/notes?title=${search}&tags=${tagsSelected}`)
+         setNotes(response.data);
+      }
+
+      fatchNotes();
+
+   }, [tagsSelected, search])
 
    return (
       <Container>
@@ -89,21 +114,24 @@ export function Home() {
 
          <Search>
 
-            <Input placeholder="Pesquisar pelo título" icon={FiSearch} />
+            <Input
+               placeholder="Pesquisar pelo título"
+               onChange={() => setSearch(e.target.value)}
+               icon={FiSearch}
+            />
 
          </Search>
 
          <Content>
 
             <Section title="Minhas notas">
-               <Note data={{
-                  title: 'React',
-                  tags: [
-                     { id: '1', name: 'React' },
-                     { id: '2', name: 'Node' }
-                  ]
-               }}
-               />
+               {
+                  notes.map(note => (
+                     <Note 
+                     key={String(note.id)}
+                     data={note}/>
+                  ))
+               }
             </Section>
 
          </Content>
