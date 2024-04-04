@@ -1,7 +1,13 @@
 //Importando os estilos para serem usados aqui no index. Você não precisa fazer nada dentro do arquivo style.
-// Importando
 import { Container, Links, Content } from "./styles.js";
 // Para Utilizar o estilo Container que foi Importado do CSS temos que colocar Container dentro dos Fragments aonde queremos modificar o estilo.
+
+// Para conseguirmos buscar pelos parametros presentes na nota, nesse caso buscaremos o ID do usuário que estará presente na página Details.
+import { useParams, useNavigate } from "react-router-dom";
+
+import { useState, useEffect } from "react";
+
+import { api } from "../../services/api"
 
 // Importamos o component Button da pasta componentes para que nosso index consiga enxergar dentro daquela pasta e utilizar aquela estilização de botão.
 import { Header } from '../../components/Header'
@@ -17,6 +23,25 @@ import { Tag } from '../../components/Tag'
 //Quando se exporta usando a linha 1 de exemplo, você deve desestruturar a variável dentro do main.jsx no import na linha 3, e você desestrutura no formato de objeto, já que função vira um objeto, (Você passa os valores da função dentro de {} oque significa objeto.)
 export function Details() {
 
+  const [data, setData] = useState(null)
+
+  const params = useParams()
+
+  const navigate = useNavigate()
+
+  function handleBack() {
+    navigate("/")
+  }
+
+  useEffect(() => {
+    async function fetchNote() {
+      const response = await api.get(`/notes/${params.id}`)
+      setData(response.data)
+    }
+
+    fetchNote()
+  })
+
   // Um elemento pode ter apenas um return() (regra do REACT) mas a regra também diz que dentro do return() podemos ter quantos elementos a gente quiser.
   return (
 
@@ -29,37 +54,65 @@ export function Details() {
     <Container>
       <Header />
 
-      <main>
-        <Content>
+      {
+        data &&
+        <main>
+          <Content>
 
 
-          <ButtonText title={"Excluir Nota"} />
+            <ButtonText title={"Excluir Nota"} />
 
-          <h1>
-            Introdução ao React
-          </h1>
+            <h1>
+              {data.title}
+            </h1>
 
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, totam, aspernatur maxime doloremque sit iure quidem voluptatem asperiores eum delectus, repellat nesciunt consequatur id. Numquam ex nisi amet quasi assumenda. Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure, blanditiis eligendi eos repudiandae corporis rerum? Earum, voluptates! Assumenda possimus sunt adipisci voluptatum cum blanditiis provident illo temporibus, molestias nihil aliquid. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorem molestias ducimus placeat iste dolorum. Molestiae soluta quos consequatur unde autem a beatae recusandae est id rem, asperiores adipisci! Dicta, quaerat.
-          </p>
+            <p>
+              {data.description}
+            </p>
 
-          <Section title="Links úteis">
-            <Links>
-              <li><a href="#">https://github.com/SLAriosi/errosBurros/</a></li>
-              <li><a href="#">https://github.com/SLAriosi/svgTools</a></li>
-            </Links>
-          </Section>
+            {
+              data.links &&
+              <Section title="Links úteis">
+                <Links>
+                  {
+                    data.links.map(link => (
 
-          <Section title="Marcadores">
-            <Tag title="express" />
-            <Tag title="nodejs" />
-          </Section>
+                      // Como a key sempre precisa ter um valor dentro dela em formato de String, usamos o String() para criar.
+                      <li key={String(link.id)}>
+                        <a href={link.url} target="_blank">
+                          {link.url}
+                        </a>
+                      </li>
+                    ))
+                  }
+                </Links>
+              </Section>
+            }
+
+            {
+              data.tags &&
+              <Section title="Marcadores">
+                {
+                  data.tags.map(tag => (
+                    <Tag
+                      title={tag.name}
+                      key={String(tag.id)}
+                    />
+                  ))
+                }
+              </Section>
+            }
 
 
-          <Button title="Voltar" />
+            <Button
+              title="Voltar"
+              onClick={handleBack}
+            />
 
-        </Content>
-      </main>
+          </Content>
+        </main>
+      }
+
     </Container>
     // Para adicionar propriedades não precisa fazer nada além de dar um espaço, e caso queira adicionar uma propriedade booleana, você só precisa passar a propriedade sem chaves ou aspas.
     // Aqui utilizo o Container dentro do Fragment para puxarmos o estilo Container que puxamos do style.js
