@@ -24,6 +24,24 @@ import { api } from '../../services/api';
 export function Home() {
    const [tags, setTags] = useState([]);
 
+   // Vamos criar esse estado para guardarmos a tag selecionada.
+   const [tagsSelected, setTagsSelected] = useState([]);
+
+   // Função para lidar com a mudança de estado da tag;
+   function handleTagSelected(tagName) {
+
+      const alreadySelected = tagsSelected.includes(tagName);
+      console.log(alreadySelected)
+
+      if (alreadySelected) {
+         const filteredTags = tagsSelected.filter(tag => tag !== tagName);
+         setTagsSelected(filteredTags);
+         
+      } else {
+         setTagsSelected(prevState => [...prevState, tagName])
+      }
+   }
+
    useEffect(() => {
       async function fetchTags() {
          const response = await api.get("/tags")
@@ -46,13 +64,21 @@ export function Home() {
 
          <Menu>
 
-            <li><ButtonText title={"Todos"} isActive /></li>
+            <li>
+               <ButtonText
+                  title={"Todos"}
+                  onClick={() => handleTagSelected("all")}
+                  isActive={tagsSelected.length === 0}
+               />
+            </li>
 
             {
                tags && tags.map(tag => (
                   <li key={String(tag.id)}>
                      <ButtonText
                         title={tag.name}
+                        onClick={() => handleTagSelected(tag.name)}
+                        isActive={tagsSelected.includes(tag.name)}
                      />
                   </li>
                ))
