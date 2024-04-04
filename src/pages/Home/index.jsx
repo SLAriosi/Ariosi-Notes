@@ -2,6 +2,9 @@
 // E o useEffect é uma funçao que é executada de forma automática quando nossa interface é renderizada
 import { useState, useEffect } from 'react';
 
+// Vamos utilizar essa importação, para quando clicarmos na nota que queremos ver, ela redirecionar a gente para a page Details.
+import { useNavigate } from 'react-router-dom';
+
 // Importando todos os Itens que iremos atualizar no styles.js.
 import { Container, Brand, Menu, Search, Content, NewNote } from './styles'
 
@@ -35,10 +38,12 @@ export function Home() {
    const [notes, setNotes] = useState([])
 
 
+   const navigate = useNavigate()
+
    // Função para lidar com a mudança de estado da tag;
    function handleTagSelected(tagName) {
 
-      if(tagName === "all"){
+      if (tagName === "all") {
          return setTagsSelected([])
       }
 
@@ -52,6 +57,10 @@ export function Home() {
       } else {
          setTagsSelected(prevState => [...prevState, tagName])
       }
+   }
+
+   function handleDetails(id) {
+      navigate(`/details/${id}`)
    }
 
    useEffect(() => {
@@ -127,9 +136,11 @@ export function Home() {
             <Section title="Minhas notas">
                {
                   notes.map(note => (
-                     <Note 
-                     key={String(note.id)}
-                     data={note}/>
+                     <Note
+                        key={String(note.id)}
+                        data={note}
+                        onClick={() => handleDetails(note.id)}
+                     />
                   ))
                }
             </Section>
