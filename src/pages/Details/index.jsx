@@ -30,7 +30,7 @@ export function Details() {
   const navigate = useNavigate()
 
   function handleBack() {
-    navigate("/")
+    navigate(-1) // usar o navigate("/") é a mesma coisa, só que usando o -1 ele vai deletar a camada que estou no histórico de navegação e vai voltar para a camada anterior. Já se eu usar o navigate para o "/" aí ele vai adicionar uma camada no meu histórico de navegação.
   }
 
   async function handleRemove() {

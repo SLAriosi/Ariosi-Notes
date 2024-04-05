@@ -96,7 +96,7 @@ export function New() {
 
       // E dando tudo certo nós podemos colocar um Alert para mostrar que a nota foi criada com sucesso!!
       alert("Nota criada com Sucesso!!")
-      navigate("/")
+      navigate(-1)
 
    }
 
